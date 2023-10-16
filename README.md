@@ -21,3 +21,8 @@ bitbake-layers add-layer ../sources/meta-openembedded/meta-networking
 bitbake-layers add-layer ../sources/meta-raspberrypi
 bitbake-layers add-layer ../sources/meta-pi
 ```
+
+# Bitbake
+```
+bitbake pi-image-base
+```
