@@ -4,7 +4,7 @@ LICENSE = "MIT"
 
 #inherit core-image
 #require recipes-core/images/core-image-base.bb
-require myrpi-image-minimal.bb
+require pi-image-minimal.bb
 
 # wifi works on 'core-image-base' but NOT on 'core-image-minimal'
 # https://github.com/agherzan/meta-raspberrypi/issues/576
@@ -63,7 +63,7 @@ PATCHRESOLVE = "noop"
 CONF_VERSION = "1"
 
 # wifi connectivity features
-DISTRO_FEATURES_append = " wifi"
+DISTRO_FEATURES += " wifi"
 # this packagroup includes:
 #"packagegroup-base-wifi" -> "iw"
 #"packagegroup-base-wifi" -> "kernel-module-aes-generic" [style=dotted]
@@ -80,7 +80,7 @@ DISTRO_FEATURES_append = " wifi"
 #"packagegroup-base-wifi" -> "kernel-module-zd1211rw" [style=dotted]
 #"packagegroup-base-wifi" -> "wireless-regdb-static"
 #"packagegroup-base-wifi" -> "wpa-supplicant"
-DISTRO_FEATURES_append = " usbhost"
+DISTRO_FEATURES += " usbhost"
 # this packagroup includes:
 #"packagegroup-base-usbhost" -> "kernel-module-ehci-hcd" [style=dotted]
 #"packagegroup-base-usbhost" -> "kernel-module-mousedev" [style=dotted]
@@ -95,7 +95,7 @@ DISTRO_FEATURES_append = " usbhost"
 #"packagegroup-base-usbhost" -> "kernel-module-usbserial" [style=dotted]
 #"packagegroup-base-usbhost" -> "kernel-module-usb-storage" [style=dotted]
 #"packagegroup-base-usbhost" -> "usbutils"
-DISTRO_FEATURES_append = " usbgadget"
+DISTRO_FEATURES += " usbgadget"
 # this packagroup includes:
 
 ###########################
@@ -111,7 +111,7 @@ DISTRO_FEATURES_append = " usbgadget"
 # https://support.criticallink.com/redmine/projects/arm9-platforms/wiki/Enabling_USB_RNDIS_Support
 
 # not sure if this is required ... i might be polluting it.
-#IMAGE_INSTALL_append += " kernel-modules"
+#IMAGE_INSTALL += " kernel-modules"
 #MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "kernel-module-dwc2"
 
 # This command adds the following line to config.txt:
@@ -132,17 +132,17 @@ DISTRO_FEATURES_append = " usbgadget"
 # to generate the file /proc/config.gz
 
 # extra tools
-IMAGE_INSTALL_append = " bash \
+IMAGE_INSTALL += " bash \
 			 bash-completion \
 "
 # network extra tools
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL += " \
         bridge-utils \
-        dhcp-client \
+        dhcpcd \
         iptables"
 
 # extra dev tools
-IMAGE_INSTALL_append = " \
+IMAGE_INSTALL += " \
     vim \
     less \
     ldd \
@@ -158,7 +158,7 @@ IMAGE_INSTALL_append = " \
 # TODO: not tested yet
 ###########################
 # VNC has lots of depedency. It's heavy. Be sure you need it.
-#IMAGE_INSTALL_append += " x11vnc"
+#IMAGE_INSTALL += " x11vnc"
 
 # install the package-management tool (opkg, dnf, apt), depending on the format selected next. the default is rpm.
 EXTRA_IMAGE_FEATURES += " package-management " 
